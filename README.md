@@ -1,102 +1,91 @@
+# Gustavo Okamoto
 
-
-### Gustavo Okamoto
-
----
-
-AI Security Engineer  Detection Engineering 路 Runtime Authorization
-
+**AI Security Engineer · Detection Engineering · Runtime Authorization**
 
 I build security controls for the point where an AI agent's proposal becomes a real action.
 
+[Vortex DFS](https://github.com/okamoto-security-labs/Vortex-DFS) · [Okamoto Security Labs](https://github.com/okamoto-security-labs) · [LinkedIn](https://www.linkedin.com/in/gustavo-okamoto-de-carvalho-ti/) · [Email](mailto:gugaokamoto1@gmail.com)
 
-Flagship project 路 Engineering evidence 路 Open-source contributions 路 Contact
+## About
 
+My background spans nine years in IT support and operations. Today, my work focuses on AI security, detection fidelity, policy enforcement, and the execution boundaries of autonomous systems.
 
+I lead the engineering of **Vortex DFS**, an experimental Rust runtime that evaluates identity, evidence, authority, policy, and consequences before protected execution. I care about security behavior that can be inspected in code, explained through stable reason codes, and reproduced through executable failure scenarios.
 
+Based in Brazil and open to remote opportunities in AI security, detection engineering, and security operations.
 
+## Flagship project: Vortex DFS
 
-### About
+> Evidence is not authority. A proposed action is not permission to execute.
 
----
+[Vortex DFS](https://github.com/okamoto-security-labs/Vortex-DFS) places an explicit decision boundary between an agent or workflow and its executor.
 
-My background spans nine years in IT support and operations. Today, my engineering work focuses on AI security, detection fidelity, and explicit authorization at execution boundaries.
+```text
+request → identity + evidence + policy + consequence
+        → ALLOW / REJECT / REDACT / AUDIT
+        → guarded execution
+```
 
+The current repository includes:
 
-I build Vortex DFS at Okamoto Security Labs: an experimental Rust runtime that evaluates policy and evidence before protected execution. My focus is making security behavior inspectable through code, reason codes, architecture decisions, and executable failure scenarios.
+- a deterministic Rust decision engine and hard execution gate;
+- bearer identity, tenant context, and scope enforcement;
+- PostgreSQL-backed, tenant-isolated audit events;
+- versioned policy bundles, registry, and publisher-trust foundations;
+- a runtime-failure conformance harness built from generalized security invariants;
+- AISVS C9 action-class conformance tests for reversibility, consequence, and oversight;
+- protected HTTP paths for agent tool evaluation and anonymization;
+- experimental eBPF/XDP and post-quantum research, clearly separated from production claims.
 
+**Maturity:** experimental pre-alpha. The project has executable security properties and working enforcement paths, but it is not presented as production-certified or independently audited.
 
-Brazil 路 Open to remote opportunities in AI security, detection engineering, and security operations.
+## Selected engineering work
 
+| Area | What I am building |
+|---|---|
+| Runtime authorization | Typed decisions, stable reason codes, fail-closed evaluation, and guarded execution |
+| Authority preservation | Constraints for missing identity, denied intent, retries, scopes, and incomplete approval context |
+| Consequence-aware control | Worst-case action-chain evaluation, reversibility, oversight, and irreversible-action hard gates |
+| Auditability | Audit-before-execution semantics, bounded evidence records, and tenant-isolated retrieval |
+| Policy distribution | Deterministic bundles, integrity validation, local installation, registry resolution, and publisher trust |
+| Conformance engineering | Executable runtime-failure scenarios and external semantic mapping instead of security-by-claim |
 
-### Flagship: Vortex DFS
+## Other projects
 
----
+- [Detection Fidelity Score](https://github.com/gustavo89587/detection-fidelity-score) — engineering work around measurable detection quality and operational confidence.
+- [Security Observability Governance](https://github.com/gustavo89587/security-observability-governance) — governance patterns for security telemetry and observability.
+- [DFS SDK Open](https://github.com/okamoto-security-labs/DFS-SDK-OPEN) — open integration work around Vortex runtime decisions.
+- [SOC Incident Response Playbooks](https://github.com/gustavo89587/soc-incident-response-playbooks) — practical response automation and operational guidance.
+- [SOC Threat Intel Automation](https://github.com/gustavo89587/soc-threat-intel-automation) — threat-intelligence automation experiments.
 
-The problem: a proposed action, a risk score, and permission to execute are different things. Integrations must preserve that distinction all the way to the executor.
+## Open-source contributions
 
+My public work also includes contributions or technical participation across:
 
-The approach: evaluate evidence, authority, and consequences against explicit policy; return a structured decision; enforce that decision at the protected execution boundary.
+- [Elastic Detection Rules](https://github.com/elastic/detection-rules) — detection documentation and investigation guidance;
+- [OpenTelemetry Collector Contrib](https://github.com/open-telemetry/opentelemetry-collector-contrib) — security-related documentation and implementation work;
+- [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions) — semantic and telemetry contributions;
+- [CoSAI](https://github.com/cosai-oasis) — secure design and defender-focused work for agentic systems;
+- [Wazuh Ruleset](https://github.com/wazuh/wazuh-ruleset) — detection and ruleset contributions.
 
+I distinguish implementation, documentation, experiments, and production guarantees. A merged change is evidence of scoped engineering work—not a claim of universal system safety.
 
-Review area	Evidence
-Runtime implementation	Rust runtime modules
-Architectural reasoning	Separate evidence, authority, and consequence
-Reproducible security scenarios	Runtime failure conformance harness
-Build and test history	GitHub Actions
+## What I work with
 
-Maturity: experimental pre-alpha. Enforcement depends on the integration path and the evidence supplied to it. The repository distinguishes runtime functionality from experimental cryptography and eBPF work.
+`Rust` · `Python` · `Detection Engineering` · `Policy Enforcement` · `Security Telemetry` · `AI Agent Security` · `OpenTelemetry` · `Elastic`
 
+I am especially interested in:
 
-### Selected engineering work
+- explicit execution authorization for AI agents;
+- runtime failure modes and reproducible conformance tests;
+- detection quality and explainable security decisions;
+- telemetry semantics that preserve security meaning;
+- the boundary between evidence, authority, action, and consequence.
 
----
+## Work with me
 
+- **Engineering opportunities:** AI security, detection engineering, runtime authorization, and security operations.
+- **Technical pilots:** agent execution controls and runtime-failure assessments through Okamoto Security Labs.
+- **Research conversations:** conformance, policy enforcement, and secure agent architecture.
 
-Preserving authority constraints: denied-intent constraints and retry constraints make prior security state explicit in runtime evaluation.
-
-Handling incomplete approval context: fail-closed evaluation prevents missing mandatory approval evidence from silently becoming permission.
-
-Separating risk from authority: executable conformance cases test that a risk signal does not manufacture execution authority.
-
-Distributing policy: versioned bundles and registry foundations separate bundle integrity from publisher authenticity.
-
-
-These links describe specific changes and their scope; they are not claims of universal agent safety or production certification.
-
-
-### Upstream contributions
-
----
-
-Selected merged contributions. Documentation and implementation work are identified separately.
-
-
-Project	Contribution	Type
-OpenTelemetry Collector Contrib	Clarified redaction rule precedence and added an operator example	Documentation
-Elastic Detection Rules	Improved encrypted-archive investigation guidance and false-positive scenarios	Detection documentation
-Agent Vortex Envelope	Made missing DFS evidence produce an explicit fail-safe block	Implementation and tests
-Agent Vortex Envelope	Separated DFS decisions from runtime context	Implementation
-
-### Engineering interests
-
----
-
-Rust  Python  Detection engineering  Policy enforcement Security telemetry Agent execution boundaries
-
-
-I care about explicit failure states, reproducible tests, and explaining where a security guarantee ends.
-
-
-### Work with me
-
-Engineering opportunities: AI security, detection engineering, and security operations.
-
-
-Technical pilots and research conversations: agent execution controls and runtime failure assessments through Okamoto Security Labs.
-
-
-Email Technical writing
-
-
-
+Contact: [gugaokamoto1@gmail.com](mailto:gugaokamoto1@gmail.com)
